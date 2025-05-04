@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/chiragluitel/Documents/Projects/leetcode/neet_two_Sum'
+relocations:     []
+...
