@@ -21,15 +21,13 @@ int maxArea(vector<int> heights){
             }
             //increase l as we know heights[l] is smaller in hopes of finding something better
             l++;
-        }
-        if (heights[l] > heights [r]){
+        }else if (heights[l] > heights [r]){
             if(area_ifRissmaller > max){
                 max = area_ifRissmaller;
             }
             //move r as we know heights[r] is smaller anyways
             --r;
-        }
-        if (heights[l] == heights[r]){
+        }else if (heights[l] == heights[r]){
             if (area_ifLissmaller > max){
                 max = area_ifLissmaller;
             }
