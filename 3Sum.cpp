@@ -1,32 +1,33 @@
 #include <iostream>
 #include <vector>
-
 using namespace std;
 
-vector<vector<int>> threeSum(vector<int> nums){
+
+vector<vector<int>> threeSum (vector<int> nums){
+    //-1, 0, 1, 2, -1, -4
     vector<vector<int>> result;
-    sort(nums.begin(), nums.end());
-    //{-4, -1, -1, 0, 1, 2}
-    for (int i=0; i<nums.size(); i++){
-        //Only process further if this isn't a duplicate item
-        if( nums[i] != nums[i-1] ){
-             //-4
-            //now find b+c (which is -i)
-            int target = - nums[i]; //(which is to say, find 4)
-            int l = 0;
-            int r= nums.size() - 1;
-            while (l<r){
-                
-                if ((nums[l] + nums[r]) < target ){
+    sort (nums.begin(), nums.end());
+    for (int i = 0; i<nums.size(); i++ ){
+        //nums[i] -> -4;
+        if(nums[i]>0) break;
+
+        if (i>0 && nums[i] == nums[i-1]) continue;
+        int l= i + 1;
+        int r=nums.size() - 1;
+        
+        while (l<r){
+            int sum = nums[i] + nums[l] + nums[r];
+            if (sum > 0){
+                --r;
+            }else if (sum < 0){
                 l++;
+            }else{
+                result.push_back({nums[i], nums[l], nums[r]});
+                l++;
+                --r;
+                while (l<r && nums[l] == nums[l-1]){
+                    l++;
                 }
-                if ((nums[l] + nums[r]) > target ){
-                    --r;
-                }
-                if ((nums[l] + nums[r]) == target){
-                result.push_back({nums[l], nums[r], nums[i]});
-                l = r + 1; 
-                };
             }
         }
     }
@@ -34,17 +35,13 @@ vector<vector<int>> threeSum(vector<int> nums){
 }
 
 int main(){
-    string input;
-    cout << "Enter 5 numbers";
-    cin >> input;
-
-    vector<int> nums = {-1,0,1,2,-1,-4};
+    vector<int> nums = {-1, 0, 1, 2, -1, -4};
     vector<vector<int>> result = threeSum(nums);
-    for (vector<int> res:result){
-        for (int i : res){
-            cout << i << endl;
+    for (const auto& vector: result){
+        for (int i:vector){
+            cout << i <<endl;
         }
-        cout << "----------------" << endl;
+        cout << "----------" << endl;
     }
     return 0;
 }
