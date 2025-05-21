@@ -22,6 +22,7 @@ int maxProfit(vector<int>& prices){
             }
         }
     }
+    
     return max;
 }
 
