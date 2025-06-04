@@ -9,11 +9,10 @@ int LongestRepeating(string s, int replacable){
     unordered_map<int, int> map;
     int l=0;
     int r=0;
-
+    int currentmax = 0;
     while(r<s.size()){
-        int currentmax = 0;
         map[s[r]]++;
-        int lengthOfWindow = l - r + 1;
+        int lengthOfWindow = (r - l) + 1;
         for (int i=65; i<91; i++){
             if (map[i] > currentmax){
                 currentmax = map[i];
@@ -34,9 +33,8 @@ int LongestRepeating(string s, int replacable){
 }
 
 int main (){
-    string s = "AAABABB";
-    int k = 1;
+    string s = "AABABBA";
+    int k = 0;
     int result = LongestRepeating(s, k);
     cout << result << endl;
-    return 0;
 }
